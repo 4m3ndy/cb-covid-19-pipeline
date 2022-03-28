@@ -1,0 +1,39 @@
+name: Generate Daily Reports
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_run:
+    workflows: ["Manual Trigger"]
+    types:
+      - completed
+jobs:
+  issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Checkout COVID-19 lates Dataset
+        uses: actions/checkout@v3
+        with:
+          repository: owid/covid-19-data
+          path: covid-19-data
+
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Generate Reports
+        run: python main.py
+        env:
+          COVID_DATA_CSV_FILE_PATH: "covid-19-data/public/data/owid-covid-data.csv"
+
+      - name: Commit Generated Report
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          repository: .
+          file_pattern: '*.html'
+          commit_user_name: GitHub Actions
+          commit_message: "Update COVID-19 reports"

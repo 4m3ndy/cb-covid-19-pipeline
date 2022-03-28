@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>COVID-19 Statistics</title>
+    <style>
+    html {
+      font-family: sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 2px solid rgb(200,200,200);
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    td, th {
+      border: 1px solid rgb(190,190,190);
+      padding: 10px 20px;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    caption {
+      padding: 10px;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>COVID-19 Statistics</h1>
+
+    <table>
+        <tr>
+          <th>Country</th>
+          <th>New Cases</th>
+          <th>Total Cases</th>
+          <th>New Vaccinations</th>
+          <th>Total Vaccinations</th>
+          <th>Last Submission Date</th>
+        </tr>
+        {% for country_covid_statistics in template_data -%}
+        <tr>
+            <td>{{ country_covid_statistics["name"] }}</td>
+            <td>{{ country_covid_statistics["new_cases"] }}</td>
+            <td>{{ country_covid_statistics["total_cases"] }}</td>
+            <td>{{ country_covid_statistics["new_vaccinations"] }}</td>
+            <td>{{ country_covid_statistics["total_vaccinations"] }}</td>
+            <td>{{ country_covid_statistics["last_submission_date"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </body>
+</html>

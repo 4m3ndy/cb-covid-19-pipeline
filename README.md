@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+## COVID-19 Daily Reports
 
-You can use the [editor on GitHub](https://github.com/4m3ndy/cb-covid-19-pipeline/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+* [Countries COVID-19 Statistics](https://4m3ndy.github.io/cb-covid-19-pipeline/countries-covid-data)
+* [List 10 Countries with Last Submission](https://4m3ndy.github.io/cb-covid-19-pipeline/countries-last-submission)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in under https://4m3ndy.github.io/cb-covid-19-pipeline , from the content in `countries-covid-data.html` and `countries-last-submission.html` files.
 
-### Markdown
+### Requriments
+- Python 3.x
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## How to run
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+### To generate COVID-19 reports
+```bash
+python3 main.py
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### To update countries list
+```bash
+python3 main.py --countries "Ukraine,Poland,Denmark,Switzerland,United States,Algeria"
+```
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/4m3ndy/cb-covid-19-pipeline/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.

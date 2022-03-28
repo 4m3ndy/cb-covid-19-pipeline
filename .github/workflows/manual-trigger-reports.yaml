@@ -1,0 +1,34 @@
+name: Manual Trigger
+on: 
+  workflow_dispatch:
+    inputs:
+      countries_list:
+        description: List of Comma Separated Countries
+        required: false
+        type: string
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+        cache: 'pip'
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    
+    - name: Add new countries
+      if: "${{ github.event.inputs.countries_list != '' }}"
+      run: python main.py --countries "${{ github.event.inputs.countries_list }}"
+    
+    - name: Add new list of countries
+      if: "${{ github.event.inputs.countries_list != '' }}"
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        repository: .
+        file_pattern: 'countries.txt'
+        commit_user_name: GitHub Actions
+        commit_message: "Update countries.txt"
